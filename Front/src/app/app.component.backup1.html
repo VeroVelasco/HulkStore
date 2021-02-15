@@ -1,0 +1,135 @@
+<div fxLayoutAlign="center center">
+  <div fxFlex="800px">
+    <form [formGroup]="form" width="800px" novalidate>
+
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="center center" class="heading">
+          <img [src]="logoSrc" id="company_logo" width="50" height = "50" />&nbsp; &nbsp; 
+          <h2>Estación de servicio "CIS"</h2>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <h3>El Jardin E10-46</h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+          <h3>R.U.C.: 1792272505001</h3>
+        </div>
+      </div>
+    
+      <div fxLayout="row">
+        
+          <div fxFlex="30%">
+            <mat-input-container>
+              <label>Fecha : {{ hoy | date }}</label>
+            </mat-input-container>
+          </div>
+        
+          
+      </div>
+        
+
+        <div fxFlex="50">
+          <label>{{ customer_info.name  }}</label>
+        </div>
+        <div fxFlex="50" fxLayoutAlign="left center" >
+          <label>{{ customer_info.address1  }}</label>
+        </div>
+
+        <div fxFlex="50" fxLayoutAlign="left center" >
+          <label>{{ customer_info.postal  }}</label>
+        </div>
+        <div fxFlex="50" fxLayoutAlign="left center" >
+          <label>{{ customer_info.telefono  }}</label>
+        </div>
+
+        <br>
+
+        <div fxLayout="row">
+          <div fxFlex="50"> 
+            <mat-input-container>
+              <span matPrefix>Factura: </span>
+              <input matInput id="invoice-number" ng-model="invoice.invoice_number" />
+            </mat-input-container>
+          </div>
+        </div>
+
+        <hr>
+        
+        <div fxFlex="80">
+          <mat-radio-group> Forma de pago : &nbsp; &nbsp; 
+            <mat-radio-button value="1">Efectivo</mat-radio-button>
+            <mat-radio-button value="2">Tarjeta Crédito</mat-radio-button>
+            <mat-radio-button value="3">Dinero electrónico</mat-radio-button>
+            <mat-radio-button value="4">Otros</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+
+      <br>
+      <br>
+      <div fxLayout.xs="column" style="font-weight: bolder">
+        <div fxFlex="40" style="text-align: left">Descripcion</div>
+        <div fxFlex="10" style="text-align: left">Unidad</div>
+        <div fxFlex="10" style="text-align: left">Cantidad</div>
+        <div fxFlex="20" style="text-align: left">Costo</div>
+        <div fxFlex="20" style="text-align: right">Total</div>
+      </div>
+
+      <div formArrayName="invoiceItems" style="font-weight: bolder; text-align: center">
+        <div fxLayout.xs="column"
+            *ngFor="let item of invoiceItems.controls; let i=index; let odd=odd;" [formGroupName]="i"
+            [ngClass]="{odd_row: odd}">
+            <mat-input-container fxFlex="40">
+              <span matPrefix><button  mat-icon-button (click)="removeItem(item)">
+                  <mat-icon class="md-24" aria-label="remove" style = "color:rgb(255, 0, 140)">backspace</mat-icon>
+                </button> {{i + 1}}. &nbsp;</span>
+              <input class="form-control" matInput formControlName="name">
+            </mat-input-container>
+          
+          <mat-input-container fxFlex="10">
+            <input class="form-control" matInput formControlName="unit">
+          </mat-input-container>
+          <mat-input-container matInput fxFlex="10">
+            <input class="form-control" matInput type="number" formControlName="qty">
+          </mat-input-container>
+          <mat-input-container fxFlex="20">
+            <input class="form-control" matInput type="number" formControlName="cost">
+          </mat-input-container>
+          <mat-input-container fxFlex="20">
+            <input class="form-control right_placeholder" matInput  disabled value="{{ item.value.total | currency  }}">
+          </mat-input-container>
+
+        </div>
+      </div>
+      <div fxLayout="row">
+        <button mat-mini-fab (click)="addItem()" class="mat-small">+</button>
+      </div>
+
+      <div fxLayout="row" >
+        <div fxFlex="80"></div>
+        <div fxFlex="20">
+            <label>Sub total</label>
+        </div>
+        <div fxFlex="20">
+          <input class="form-control right_placeholder" matInput disabled value="{{ form.value.subTotal | currency  }}">
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlex></div>
+        <mat-form-field fxFlex="20">
+          <input  matInput type="number" formControlName="taxPercent" placeholder="% tax">
+          <span matSuffix>&nbsp; %</span>
+        </mat-form-field>
+        <mat-form-field fxFlex="20">
+          <input class="form-control right_placeholder" matInput disabled value="{{ form.value.tax | currency  }}">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" >
+        <div fxFlex="100"></div>
+        <div fxFlex="20">
+            <label>Gran total</label>
+        </div>
+        <div fxFlex="20"  >
+          <input class="form-control right_placeholder" matInput disabled value="{{ form.value.grantTotal | currency  }}">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

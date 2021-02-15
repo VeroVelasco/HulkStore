@@ -1,0 +1,36 @@
+<div>
+  <div class="alert alert-danger" role="alert" *ngIf="showError">
+    {{infoMessage}}
+  </div>
+  <br/>
+  <br/>
+  <form class="form-horizontal" (ngSubmit)="onLogin()">
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="userName">User Name:</label>
+      <div class="col-sm-6">
+        <input [(ngModel)]="user.userName" type="text" class="form-control" id="userName" name="userName" autofocus>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="travelDate">Password:</label>
+      <div class="col-sm-6">
+        <input [(ngModel)]="user.password" type="text" class="form-control" id="nombreProducto" name="nombreProd" autofocus>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success">
+          <span class="fa fa-floppy-o"></span>
+          <span></span> Login</button>
+        <button type="button" class="btn-danger btn" (click)="onCancel()">
+          <span class="fa fa-times"></span>
+          <span></span> Cancel</button>
+      </div>
+    </div>
+
+  </form>
+</div>

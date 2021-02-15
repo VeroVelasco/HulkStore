@@ -1,0 +1,38 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+	<span id="someID">Todos los registros se imprimen en consola</span>
+	 <div>
+            <p class="greeting-id">The ID  1 is </p>
+            <p class="greeting-content">The test 1 is: </p>
+        </div>
+	<button type="submit" onclick="UserAction()">Search</button>
+    
+    <script>
+    function UserAction() {
+        $.ajax({
+            url: "http://localhost:8090/app/test/list"
+        }).then(function(data) {
+           //$('.greeting-id').append(data[0].id);
+          // $('.greeting-content').append(data[0].test);
+           console.log(data);
+        });
+     }
+    $(document).ready(
+    		
+    );
+    
+    </script>
+</body>
+</html>
