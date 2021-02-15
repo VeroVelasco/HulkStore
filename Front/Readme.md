@@ -1,11 +1,11 @@
-# Front Flights Request
+# Front HulkStore 
 
 ## Utilitarios
 * Angular cli 1.3.2
 * Visual Studio Code
 
 ## Despliegue
-Abrir la consola del sistema operativo y ejecutar los comandos:
+Open the system console and execute:
 
 1. cd al proyecto base
 2. npm install 
